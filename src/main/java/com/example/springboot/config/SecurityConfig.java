@@ -13,6 +13,9 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 
+
+
+//configuration
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {

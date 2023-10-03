@@ -14,15 +14,22 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+//convalida nel service
 @Service
 public class MealService {
     private MealDao mealDao;
+    private RestaurantConfig restaurantConfig;
     private Double MIN_SUMMER_TEMP = 20.0;
 
     @Autowired
-    public MealService(MealDao mealDao) {
+    public MealService(MealDao mealDao, RestaurantConfig restaurantConfig) {
         this.mealDao = mealDao;
+        this.restaurantConfig = restaurantConfig;
     }
+
+
 
     public void addMeal(Meal meal) {
         mealDao.save(meal);
@@ -49,7 +56,9 @@ public class MealService {
     }
 
     private Double getCurrentTemperatureInCentigrade() {
+
         try {
+            //usando un api esterna
             JSONObject response = Unirest.get("https://api.open-meteo.com/v1/forecast?latitude=16.00&longitude=30.0&current_weather=true")
                     .asJson().getBody().getObject();
 
@@ -57,5 +66,14 @@ public class MealService {
         } catch (UnirestException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+
+
+    public void test()
+    {
+        mealDao.findByName("xiao").forEach(System.out::println);
+        System.out.println();
     }
 }

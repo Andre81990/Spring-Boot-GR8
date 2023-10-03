@@ -14,6 +14,10 @@ public class Ingredient {
     private boolean isGlutenFree;
     private boolean isLactoseFree;
 
+
+
+
+//nel nostro ingrediente dobbiamo specificare un pasto
     @JsonBackReference
     @ManyToOne
     private Meal meal;

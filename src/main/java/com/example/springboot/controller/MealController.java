@@ -54,4 +54,19 @@ public class MealController {
         return ResponseEntity.ok("2 + 2 = 4");
     }
 
+
+    @PostMapping("/meal-many-to-one")
+    public ResponseEntity<Meal> mealManyToOne() {
+
+        Meal meal =new Meal("xiao","souf of shit",19.0,true);
+        Ingredient ingredient=new Ingredient("Dumpling",true,true,false,true);
+
+
+        ingredient.setMeal(meal);
+meal.setIngredients(Arrays.asList(ingredient));
+
+        mealService.addMeal(meal);
+        return ResponseEntity.ok().build();
+    }
+
 }
